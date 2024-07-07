@@ -7,7 +7,6 @@ import config
 
 
 class BasePage:
-    url = "https://qa-scooter.praktikum-services.ru"
     accept_cookie_btn = (By.XPATH, "//*[contains(@class, 'App_CookieButton')]")
 
     def __init__(self, driver):
@@ -18,16 +17,10 @@ class BasePage:
             ec.visibility_of_element_located(locator))
         return element
 
-    def get_element(self, locator: tuple[str, str]):
-        try:
-            element = self.wait_element(locator)
-        except TimeoutException:
-            element = None
-        return element
-
     def click_element(self, locator: tuple[str, str]):
         element = self.wait_element(locator)
         element.click()
+        return element
 
     def accept_cookies(self):
         self.click_element(self.accept_cookie_btn)
