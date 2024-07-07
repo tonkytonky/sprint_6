@@ -22,5 +22,9 @@ class BasePage:
         element.click()
         return element
 
+    def send_keys_to_element(self, locator: tuple[str, str], keys):
+        element = self.wait_element(locator)
+        element.send_keys(keys)
+
     def accept_cookies(self):
         self.click_element(self.accept_cookie_btn)
