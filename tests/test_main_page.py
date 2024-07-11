@@ -7,9 +7,9 @@ from pages.main_page import MainPage
 
 class TestMainPage:
 
-    def test_questions_answers_mapping(self, driver):
-        main_page = MainPage(driver)
-        driver.get(MAIN_PAGE_URL)
+    def test_questions_answers_mapping(self, firefox_driver):
+        main_page = MainPage(firefox_driver)
+        firefox_driver.get(MAIN_PAGE_URL)
         main_page.accept_cookies()
 
         question_answer_mapping_actual = main_page.fetch_question_answer_mapping_actual()
