@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 from random import choice
 
+import allure
 from faker import Faker
 from selenium.webdriver import Keys
 from selenium.webdriver.common.by import By
@@ -31,8 +32,8 @@ class OrderPage(BasePage):
         super().__init__(driver)
         self.faker = Faker("ru_RU")
 
-    def fill_order_form_with_generated_data(self):
-        # Раздел "Для кого самокат"
+    @allure.step('Заполнить форму заказа: Раздел "Для кого самокат"')
+    def fill_order_form_section_scooter_with_generated_data(self):
         self.send_keys_to_element(self.name_locator, self.faker.first_name())
         self.send_keys_to_element(self.surname_locator, self.faker.last_name())
 
@@ -50,7 +51,8 @@ class OrderPage(BasePage):
 
         self.click_element(self.next_btn_locator)
 
-        # Раздел "Про аренду"
+    @allure.step('Заполнить форму заказа: Раздел "Про аренду"')
+    def fill_order_form_section_rent_with_generated_data(self):
         date = self.faker.date_between(datetime.now(), timedelta(days=14)).strftime("%d.%m.%Y")
         self.send_keys_to_element(self.date_locator, date)
         self.send_keys_to_element(self.date_locator, Keys.ESCAPE)

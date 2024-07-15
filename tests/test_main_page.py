@@ -1,15 +1,16 @@
+import allure
 from assertpy import assert_that
 
-from config import MAIN_PAGE_URL
 from data import QUESTION_ANSWER_MAPPING
 from pages.main_page import MainPage
 
 
 class TestMainPage:
 
+    @allure.title("Проверить соответствие вопросов и ответов")
     def test_questions_answers_mapping(self, firefox_driver):
         main_page = MainPage(firefox_driver)
-        firefox_driver.get(MAIN_PAGE_URL)
+        main_page.open_page()
         main_page.accept_cookies()
 
         question_answer_mapping_actual = main_page.fetch_question_answer_mapping_actual()

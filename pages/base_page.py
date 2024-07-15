@@ -1,3 +1,4 @@
+import allure
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as ec
 from selenium.webdriver.support.wait import WebDriverWait
@@ -25,5 +26,6 @@ class BasePage:
         element = self.wait_element(locator)
         element.send_keys(keys)
 
+    @allure.step("Принять куки")
     def accept_cookies(self):
         self.click_element(self.accept_cookie_btn)
